@@ -1,0 +1,44 @@
+# Binaries and build output
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+bin/
+dist/
+build/
+
+# Coverage and profiling
+coverage.out
+*.coverprofile
+*.pprof
+cpu.prof
+mem.prof
+
+# Go workspace / modules
+go.work
+go.work.sum
+vendor/
+
+# IDE/editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs and temp files
+*.log
+tmp/
+temp/
+
+# Env files (keep secrets out of git)
+.env
+.env.*
+!.env.example
