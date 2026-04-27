@@ -111,6 +111,60 @@ func modifyPtr(x *int) {
 }
 ```
 
+## Type Assertion
+
+Type assertions extract the underlying value from an interface.
+
+### Basic Type Assertion
+
+```go
+var i interface{} = "hello"
+s := i.(string)       // "hello"
+s, ok := i.(string)   // "hello", true
+```
+
+### Type Switch
+
+Type switch handles multiple types.
+
+```go
+switch v := i.(type) {
+case string:
+    fmt.Println("String:", v)
+case int:
+    fmt.Println("Int:", v)
+default:
+    fmt.Println("Unknown")
+}
+```
+
+## Struct Tags
+
+Struct tags provide metadata for fields.
+
+### Using Tags
+
+Common tags for JSON marshaling and field behavior.
+
+```go
+type User struct {
+    Name  string `json:"name"`
+    Email string `json:"email,omitempty"`
+    Age   int    `json:"-"`
+}
+```
+
+## Empty Interface
+
+The `interface{}` type can hold any value.
+
+```go
+var x interface{}
+x = "hello"
+x = 42
+x = []int{1, 2, 3}
+```
+
 ## Reflection
 
 Reflection allows inspection of types at runtime.

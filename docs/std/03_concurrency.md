@@ -47,6 +47,21 @@ Buffered channels have capacity.
 ch := make(chan int, 10)
 ```
 
+### Closing Channels
+
+Close channels to signal completion.
+
+```go
+ch := make(chan int)
+go func() {
+    ch <- 1
+    close(ch)
+}()
+for v := range ch {
+    fmt.Println(v)
+}
+```
+
 ## Select Multiplexing
 
 Select allows waiting on multiple channel operations.
@@ -210,3 +225,58 @@ Combine or split channels.
 ### Pipeline
 
 Chain goroutines with channels for data processing.
+
+## Goroutine Management
+
+### Prevent Goroutine Leaks
+
+Always ensure goroutines can exit.
+
+```go
+ctx, cancel := context.WithCancel(context.Background())
+defer cancel()
+go func(ctx context.Context) {
+    select {
+    case <-ctx.Done():
+        return
+    }
+}(ctx)
+```
+
+### Timeout Pattern
+
+Use context for timeouts.
+
+```go
+ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+defer cancel()
+select {
+case result := <-ch:
+    fmt.Println(result)
+case <-ctx.Done():
+    fmt.Println("Timeout")
+}
+```
+
+## sync.Pool
+
+Pool reuses allocated objects to reduce GC pressure.
+
+```go
+var pool = sync.Pool{
+    New: func() interface{} {
+        return make([]byte, 0, 1024)
+    },
+}
+obj := pool.Get()
+defer pool.Put(obj)
+```
+
+## Race Condition Detection
+
+Use `-race` flag to detect data races.
+
+```bash
+go run -race main.go
+go test -race ./...
+```

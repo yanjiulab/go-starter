@@ -32,6 +32,18 @@ const Pi = 3.14159
 const Greeting = "Hello, World!"
 ```
 
+### Iota
+
+Use `iota` to create sequences of constants.
+
+```go
+const (
+    A = iota // 0
+    B = iota // 1
+    C = iota // 2
+)
+```
+
 ### Variables
 
 Variables are declared using the `var` keyword or short variable declaration `:=`. They can be reassigned.
@@ -53,6 +65,17 @@ Common basic types include `int`, `float64`, `string`, `bool`, and `rune`. The z
 var x int        // 0
 var s string     // ""
 var b bool       // false
+var by byte      // 0 (same as uint8)
+var r rune       // 0 (same as int32, represents Unicode)
+```
+
+### Named Types
+
+Create custom types based on existing types.
+
+```go
+type Meter float64
+type Point struct { X, Y int }
 ```
 
 ### Type Conversion
@@ -85,6 +108,12 @@ The `if` statement executes code based on a condition.
 ```go
 if x > 0 {
     fmt.Println("Positive")
+}
+
+if age >= 3 {
+    fmt.Println(name, "is growing with Go")
+} else {
+    fmt.Println(name, "is too young")
 }
 ```
 
@@ -195,6 +224,17 @@ p = &x
 fmt.Println(*p) // 10
 ```
 
+### Nil Pointers
+
+Pointers have a zero value of `nil`.
+
+```go
+var p *int // nil
+if p != nil {
+    fmt.Println(*p)
+}
+```
+
 ## Data Structure
 
 Go provides built-in data structures like arrays, slices, and maps.
@@ -274,6 +314,49 @@ value, ok := m["key"]
 if ok {
     fmt.Println("exists", value)
 }
+```
+
+## String Operations
+
+The `strings` package provides common string operations.
+
+### Common String Functions
+
+```go
+import "strings"
+
+strings.Contains("hello", "ell")     // true
+strings.ToUpper("hello")             // "HELLO"
+strings.Split("a,b,c", ",")          // ["a" "b" "c"]
+strings.Join([]string{"a", "b"}, "-") // "a-b"
+strings.HasPrefix("hello", "he")     // true
+```
+
+## Panic & Recover
+
+Handle unexpected errors or exceptional situations.
+
+### Panic
+
+Panic terminates the program flow.
+
+```go
+if x < 0 {
+    panic("x must be positive")
+}
+```
+
+### Recover
+
+Recover catches panics and allows continued execution.
+
+```go
+defer func() {
+    if r := recover(); r != nil {
+        fmt.Println("Recovered:", r)
+    }
+}()
+panic("something went wrong")
 ```
 
 ## OOP

@@ -1,12 +1,15 @@
 # Master Go in 10 Minutes for C++ Developers
 
-2500字左右
+This guide helps experienced C++ developers quickly grasp Go's essential concepts. Go emphasizes simplicity, concurrency, and pragmatism.
 
-本次已对 `examples` 下示例进行归类与去重，并重组为 `examples/std`：
+## Key Differences from C++
 
-- 单文件单知识点
-- 避免“一个文件塞多个主题”
-- 降低重复演示内容
+- **Garbage Collection**: Automatic in Go; manual in C++
+- **Concurrency**: Goroutines (lightweight) vs OS threads
+- **Pointers**: Simpler; limited to single level (*T, not **T)
+- **Generics**: Go 1.18+ supports with constraints
+- **No Inheritance**: Composition and interfaces instead
+- **Fast Compilation**: Single binary output
 
 ---
 

@@ -135,6 +135,25 @@ file, _ := os.Open("file.txt")
 defer file.Close()
 ```
 
+## Recursion
+
+Functions can call themselves for divide-and-conquer problems.
+
+### Basic Recursion
+
+```go
+func factorial(n int) int {
+    if n <= 1 {
+        return 1
+    }
+    return n * factorial(n-1)
+}
+```
+
+### Stack Overflow Prevention
+
+Be mindful of call depth for large datasets.
+
 ## Generic Functions
 
 Functions that work with any type using generics.
@@ -159,5 +178,39 @@ func max[T constraints.Ordered](a, b T) T {
         return a
     }
     return b
+}
+```
+
+## Error Handling in Functions
+
+Use defer, panic, and recover for robust error handling.
+
+### Defer for Cleanup
+
+Ensure resources are released.
+
+```go
+func readFile(path string) ([]byte, error) {
+    f, err := os.Open(path)
+    if err != nil {
+        return nil, err
+    }
+    defer f.Close()
+    return os.ReadFile(path)
+}
+```
+
+### Panic and Recover
+
+Handle exceptional situations.
+
+```go
+defer func() {
+    if r := recover(); r != nil {
+        fmt.Println("Recovered from:", r)
+    }
+}()
+if impossible {
+    panic("This should not happen")
 }
 ```

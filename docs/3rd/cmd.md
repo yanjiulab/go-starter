@@ -1,19 +1,21 @@
-# CMD
+# CMD - Cobra CLI Framework
 
-## 安装 cobra
+Cobra is a powerful library for building modern CLI applications in Go.
+
+## Installation
 
 ```bash
-# install cobra lib
+# Install Cobra library
 go get -u github.com/spf13/cobra@latest
 
-# install cobra-cli command
+# Install Cobra CLI tool
 go install github.com/spf13/cobra-cli@latest
 
-# ensure GOPATH/bin is configed in the PATH
+# Ensure GOPATH/bin is in PATH
 export PATH=$PATH:$(go env GOPATH)/bin
 ```
 
-## 初始化项目
+## Project Initialization
 
 ```bash
 mkdir go-starter
@@ -25,5 +27,27 @@ cobra-cli add serve
 cobra-cli add cli
 
 cobra-cli add create -p 'configCmd'
+```
 
+## Common Commands
+
+### Run CLI Application
+
+```bash
+go run main.go serve
+go run main.go cli
+```
+
+### Add New Command
+
+```bash
+cobra-cli add mycommand
+cobra-cli add subcommand -p 'mycommandCmd'
+```
+
+### Build Binary
+
+```bash
+go build -o go-starter
+./go-starter serve --help
 ```
