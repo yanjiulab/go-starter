@@ -19,7 +19,7 @@ export PATH=$PATH:$(go env GOPATH)/bin
 mkdir go-starter
 cd go-starter
 go mod init github.com/yanjiulab/go-starter
-cobra-cli init --author "Yanjiulab" --license MIT
+cobra-cli init --author "Yanjiulab" --license MIT --viper
 
 cobra-cli add serve
 cobra-cli add cli
